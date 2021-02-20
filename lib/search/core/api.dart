@@ -4,6 +4,8 @@ class Api {
   //* Base API URL
   static const baseURL = "https://developers.zomato.com/api/v2.1";
 
+  String ourApi = "https://www.almenuqr.com/api/restorants";
+
   //* ---------------
   //* ENDPOINT FIELD
   //* ----------------

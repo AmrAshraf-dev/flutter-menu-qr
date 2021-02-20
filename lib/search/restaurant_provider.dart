@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:location_menu_new/api/apiservices.dart';
+import 'package:location_menu_new/models/almenuqrResturantModels.dart';
 import 'package:location_menu_new/models/restaurant_model.dart';
 import 'package:location_menu_new/models/resturantgooglemodel.dart';
 import 'package:location_menu_new/models/review_model.dart';
@@ -48,6 +49,10 @@ class RestaurantProvider extends ChangeNotifier {
   ResturantGoogleModel get restaurantgoogleByKeywordList =>
       _restaurantgoogleByKeywordList;
 
+  List<AlmenuqrResturantModels> _almenuqrResturantModels;
+  List<AlmenuqrResturantModels> get almenuqrResturantModels =>
+      _almenuqrResturantModels;
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // //* Review list by restaurant
   List<ReviewModel> _reviewList;
@@ -94,12 +99,17 @@ class RestaurantProvider extends ChangeNotifier {
     //* Then fetch new keyword
     // final locationProv = Provider.of<LocationProvider>(context, listen: false);
 
-    var res = await getResturantKeyword(keyword);
-    _restaurantgoogleByKeywordList = resturantGoogleModelFromJson(res);
-    // print(resturantGoogleModel.results[1].name);
-    for (var h in _restaurantgoogleByKeywordList.results) {
+    var res = await getOurData();
+    _almenuqrResturantModels = almenuqrResturantModelsFromMap(res);
+    for (var h in _almenuqrResturantModels) {
       print('rest ${h.name}');
     }
+    //var res = await getResturantKeyword(keyword);
+    //_restaurantgoogleByKeywordList = resturantGoogleModelFromJson(res);
+    // print(resturantGoogleModel.results[1].name);
+    // for (var h in _restaurantgoogleByKeywordList.results) {
+    //   print('rest ${h.name}');
+    // }
     // _restaurantByKeywordList = await restaurantServices.getAllByKeyword(
     //     keyword,
     //     '14.5457479', //  locationProv.latitude.toString(),

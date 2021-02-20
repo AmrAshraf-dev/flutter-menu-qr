@@ -29,13 +29,36 @@ getResturant(String url) async {
   }
 }
 
-getResturantKeyword(String keyword) async {
+// getResturantKeyword(String keyword) async {
+//   {
+//     var tdata;
+//     await http
+//         .get(
+//       // "$publicurl&name=$keyword&location=$loclatitude,$loclongitude&radius=500&types=restaurant&key=$apikey",
+//       "$publicurl&name=$keyword&location=$latitude,$longitude&radius=500&types=restaurant&key=$apikey",
+//     )
+//         .then((response) {
+//       tdata = response.body;
+//     }).timeout(
+//       Duration(seconds: 10),
+//       onTimeout: () {
+//         status = true;
+//         connection = true;
+
+//         return null;
+//       },
+//     );
+
+//     return tdata;
+//   }
+// }
+
+getOurData() async {
   {
     var tdata;
     await http
         .get(
-      // "$publicurl&name=$keyword&location=$loclatitude,$loclongitude&radius=500&types=restaurant&key=$apikey",
-      "$publicurl&name=$keyword&location=$latitude,$longitude&radius=500&types=restaurant&key=$apikey",
+      "https://www.almenuqr.com/api/restorants",
     )
         .then((response) {
       tdata = response.body;
@@ -44,7 +67,7 @@ getResturantKeyword(String keyword) async {
       onTimeout: () {
         status = true;
         connection = true;
-
+        print('our data is hereee ${tdata}');
         return null;
       },
     );
